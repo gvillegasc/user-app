@@ -19,9 +19,9 @@ flutter pub get
 
 # Vista Login
 
-![3](readme-images/1.PNG)
-![4](readme-images/2.PNG)
+![3](readme-images/3.PNG)
+![4](readme-images/4.PNG)
 
 # Vista Home
 
-![5](readme-images/1.PNG)
+![5](readme-images/5.PNG)
