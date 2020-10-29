@@ -5,7 +5,7 @@ class UserPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('UserPage'),
+        child: Text('User Page'),
       ),
     );
   }
