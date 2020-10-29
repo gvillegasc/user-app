@@ -8,14 +8,12 @@ class FormProvider with ChangeNotifier {
   String _passwordError;
   bool _isOk = false;
 
-  // Getters
   String get usernameController => this._usernameController;
   String get usernameError => this._usernameError;
   String get passwordController => this._passwordController;
   String get passwordError => this._passwordError;
   bool get isOk => this._isOk;
 
-  // Setters
   set usernameController(String value) {
     this._usernameController = value;
     this._usernameError = validateEmail(value);
@@ -30,8 +28,6 @@ class FormProvider with ChangeNotifier {
 
     notifyListeners();
   }
-
-  // Functions
 
   validateData() {
     if (this._passwordError == this._usernameError &&

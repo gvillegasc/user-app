@@ -9,15 +9,12 @@ class UserProvider with ChangeNotifier {
   int _page = 1;
   bool _isLoading = true;
 
-  // Constructor
   UserProvider() {
     this.getUsers(this._page);
   }
 
-  // Getters
   bool get isLoading => this._isLoading;
 
-  // Functions
   getUsers(int page) async {
     this._isLoading = true;
     final users = await userService.listUsers(page);
