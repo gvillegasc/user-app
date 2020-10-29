@@ -37,7 +37,7 @@ class TopNavigation extends StatelessWidget {
         items: <BubbleBottomBarItem>[
           _itemNavigation(
             context,
-            FontAwesomeIcons.home,
+            FontAwesomeIcons.list,
             "Home",
           ),
           _itemNavigation(
