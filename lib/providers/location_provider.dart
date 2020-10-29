@@ -24,7 +24,6 @@ class LocationProvider with ChangeNotifier {
     final PermissionStatus permissionRequestResult = await LocationPermissions()
         .requestPermissions(permissionLevel: locationPermission);
     this._permissionStatus = permissionRequestResult;
-
     notifyListeners();
   }
 }
