@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// Pages
 import 'package:userapp/pages/login_page.dart';
 import 'package:userapp/pages/navigation_page.dart';
 import 'package:userapp/pages/splash_page.dart';
