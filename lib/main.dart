@@ -1,16 +1,14 @@
-// Flutter
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:userapp/routes/routes.dart';
+import 'package:userapp/themes/theme.dart';
+import 'injection_container.dart' as di;
 
-// Providers
-import 'package:provider/provider.dart';
-import 'package:userapp/providers/location_provider.dart';
-import 'package:userapp/providers/user_provider.dart';
-
-import 'package:userapp/routes/routes.dart'; // Routes
-import 'package:userapp/themes/theme.dart'; // Theme
-
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -24,18 +22,12 @@ class MyApp extends StatelessWidget {
       statusBarColor: Colors.transparent, // notch color
       statusBarIconBrightness: Brightness.dark, //top bar icons
     ));
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => UserProvider()),
-        ChangeNotifierProvider(create: (_) => LocationProvider())
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'UserApp',
-        theme: myTheme,
-        initialRoute: 'splash',
-        routes: appRoutes,
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'UserApp',
+      theme: myTheme,
+      routes: appRoutes,
+      initialRoute: appInitialRoute,
     );
   }
 }
