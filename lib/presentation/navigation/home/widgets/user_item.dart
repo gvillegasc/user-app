@@ -48,7 +48,7 @@ class UserItem extends StatelessWidget {
               ),
               child: FadeInImage(
                 fit: BoxFit.cover,
-                placeholder: AssetImage("assets/images/loading.png"),
+                placeholder: AssetImage("assets/pages/images/img_loading.png"),
                 image: NetworkImage(this.urlImage),
               ),
             ),

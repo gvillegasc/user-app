@@ -1,20 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:userapp/domain/repository/api_repository.dart';
-import 'package:userapp/injection_container.dart';
-import 'package:userapp/presentation/bloc/splash/splash_bloc.dart';
-import 'package:userapp/presentation/bloc/user/user_bloc.dart';
-import 'package:userapp/presentation/login/login_provider.dart';
+import 'package:userapp/presentation/login/login_bloc.dart';
 import 'package:userapp/presentation/widgets/loading_alert.dart';
-import 'package:userapp/presentation/widgets/single_alert.dart';
 
 class SignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
-    final loginProvider = Provider.of<LoginProvider>(context);
-    final UserBloc userBloc = BlocProvider.of<UserBloc>(context);
+    final LoginBLoC loginBLoC = Provider.of<LoginBLoC>(context);
 
     return Container(
         margin: EdgeInsets.symmetric(vertical: screenSize.height * 0.04),
@@ -37,20 +30,16 @@ class SignInButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(screenSize.height)),
           color: Theme.of(context).primaryColor,
           textColor: Colors.white,
-          onPressed: (loginProvider.isOk)
-              ? () => login(loginProvider, context, userBloc)
-              : null,
+          onPressed: (loginBLoC.isOk) ? () => login(loginBLoC, context) : null,
         ));
   }
 
-  void login(
-      LoginProvider loginProvider, BuildContext context, userBloc) async {
+  void login(LoginBLoC loginBLoC, BuildContext context) async {
     loadingAlert(context);
+    final LoginBLoC loginBLoC = Provider.of<LoginBLoC>(context, listen: false);
 
     // ignore: close_sinks
-
-    userBloc.add(OnSignInUser(loginProvider.usernameController,
-        loginProvider.usernameController, context));
+    loginBLoC.loginUser(context);
 
     // if (data['token'] != null) {
     //   Navigator.pop(context);

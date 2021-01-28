@@ -4,8 +4,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:userapp/data/datasource/api_repository_impl.dart';
 import 'package:userapp/data/datasource/local_repository_impl.dart';
 import 'package:userapp/domain/repository/local_repository.dart';
-import 'package:userapp/presentation/bloc/splash/splash_bloc.dart';
-import 'package:userapp/presentation/bloc/user/user_bloc.dart';
+import 'package:userapp/presentation/login/login_bloc.dart';
+import 'package:userapp/presentation/navigation/home/user_bloc.dart';
+import 'package:userapp/presentation/splash/splash_bloc.dart';
 
 import 'domain/repository/api_repository.dart';
 
@@ -24,13 +25,19 @@ Future<void> init() async {
   sl.registerLazySingleton(() => http.Client());
 
   sl.registerFactory(
-    () => SplashBloc(),
+    () => SplashBLoC(),
   );
 
   sl.registerFactory(
-    () => UserBloc(
+    () => LoginBLoC(
       apiRepositoryInterface: sl(),
       localRepositoryInterface: sl(),
+    ),
+  );
+
+  sl.registerFactory(
+    () => UserBLoC(
+      apiRepositoryInterface: sl(),
     ),
   );
 }

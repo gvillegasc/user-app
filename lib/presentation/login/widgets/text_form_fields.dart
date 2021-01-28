@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:userapp/core/responsive.dart';
-import 'package:userapp/presentation/login/login_provider.dart';
+import 'package:userapp/presentation/login/login_bloc.dart';
 
 class TextFormFieldUsername extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final formProvider = Provider.of<LoginProvider>(context);
+    final LoginBLoC loginBLoC = Provider.of<LoginBLoC>(context);
     final Responsive responsive = Responsive.of(context);
     return Container(
       margin: EdgeInsets.only(
@@ -16,11 +16,11 @@ class TextFormFieldUsername extends StatelessWidget {
       child: TextField(
         keyboardType: TextInputType.emailAddress,
         onChanged: (value) {
-          formProvider.usernameController = value;
+          loginBLoC.usernameController = value;
         },
         autocorrect: false,
         decoration: InputDecoration(
-            errorText: formProvider.usernameError,
+            errorText: loginBLoC.usernameError,
             hintText: "Username",
             hintStyle: TextStyle(fontWeight: FontWeight.w500),
             icon: Icon(
@@ -35,7 +35,7 @@ class TextFormFieldUsername extends StatelessWidget {
 class TextFormFieldPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final formProvider = Provider.of<LoginProvider>(context);
+    final LoginBLoC loginBLoC = Provider.of<LoginBLoC>(context);
     final Responsive responsive = Responsive.of(context);
 
     return Container(
@@ -46,11 +46,11 @@ class TextFormFieldPassword extends StatelessWidget {
         obscureText: true,
         keyboardType: TextInputType.text,
         onChanged: (value) {
-          formProvider.passwordController = value;
+          loginBLoC.passwordController = value;
         },
         autocorrect: false,
         decoration: InputDecoration(
-            errorText: formProvider.passwordError,
+            errorText: loginBLoC.passwordError,
             hintText: "Password",
             hintStyle: TextStyle(fontWeight: FontWeight.w500),
             icon: Icon(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:userapp/core/responsive.dart';
 import 'package:userapp/injection_container.dart';
-import 'package:userapp/presentation/bloc/splash/splash_bloc.dart';
+import 'package:userapp/presentation/splash/splash_bloc.dart';
 import 'package:userapp/presentation/splash/widgets/info.dart';
 import 'package:userapp/presentation/splash/widgets/robot_background.dart';
 
@@ -10,8 +10,8 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Responsive responsive = Responsive.of(context);
-    return BlocProvider(
-      create: (_) => sl<SplashBloc>(),
+    return ChangeNotifierProvider(
+      create: (_) => sl<SplashBLoC>(),
       child: Scaffold(
         backgroundColor: Theme.of(context).primaryColor,
         body: Container(
@@ -35,14 +35,13 @@ class ButtonLocation extends StatelessWidget {
   Widget build(BuildContext context) {
     final Responsive responsive = Responsive.of(context);
 
-    // ignore: close_sinks
-    final SplashBloc splashBloc =
-        BlocProvider.of<SplashBloc>(context, listen: false);
+    final SplashBLoC splashBLoC =
+        Provider.of<SplashBLoC>(context, listen: false);
     return Positioned(
       top: responsive.heightR(3),
       right: responsive.heightR(1),
       child: IconButton(
-        onPressed: () => splashBloc.add(OnRequestPermission()),
+        onPressed: () => splashBLoC.requestPermissions(),
         icon: Icon(Icons.location_on),
       ),
     );
