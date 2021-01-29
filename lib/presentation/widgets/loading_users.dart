@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class LoadingUsers extends StatelessWidget {
+class SingleLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
@@ -10,7 +10,7 @@ class LoadingUsers extends StatelessWidget {
       child: Center(
         child: CircularProgressIndicator(
           valueColor:
-              new AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
+              AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
         ),
       ),
     );

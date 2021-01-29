@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:userapp/core/app_strings.dart';
 import 'package:userapp/presentation/login/login_bloc.dart';
 import 'package:userapp/presentation/widgets/loading_alert.dart';
 
@@ -17,7 +18,7 @@ class SignInButton extends StatelessWidget {
                 horizontal: screenSize.width * 0.2,
                 vertical: screenSize.height * 0.02),
             child: Text(
-              'SIGN IN',
+              AppStrings.actionSignIn,
               style: TextStyle(
                   wordSpacing: 1,
                   letterSpacing: 1,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:userapp/core/app_strings.dart';
 import 'package:userapp/core/responsive.dart';
 
 class TitleSplash extends StatelessWidget {
@@ -7,7 +8,7 @@ class TitleSplash extends StatelessWidget {
     final Responsive responsive = Responsive.of(context);
     return Container(
       child: Text(
-        "USERAPP",
+        AppStrings.titleSplash,
         style: TextStyle(
             fontSize: responsive.heightR(5),
             fontWeight: FontWeight.w700,

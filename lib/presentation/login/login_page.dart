@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:userapp/injection_container.dart';
+import 'package:userapp/presentation/login/login_bloc.dart';
 import 'package:userapp/presentation/login/widgets/form_login.dart';
 import 'package:userapp/presentation/login/widgets/image_robot.dart';
-
-import 'login_bloc.dart';
 
 class LoginPage extends StatelessWidget {
   @override

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:userapp/core/app_colors.dart';
 
 final myTheme = ThemeData(
-  primaryColor: Color(0xffFEDD7C),
-  accentColor: Color(0xffFFFFFF),
-  cursorColor: Color(0xffFEDD7C),
+  primaryColor: AppColors.yellow50,
+  accentColor: AppColors.white50,
+  cursorColor: AppColors.yellow50,
   pageTransitionsTheme: PageTransitionsTheme(builders: {
     TargetPlatform.android: CupertinoPageTransitionsBuilder(),
   }),

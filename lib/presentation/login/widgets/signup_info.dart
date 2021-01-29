@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:userapp/core/app_strings.dart';
 import 'package:userapp/core/responsive.dart';
 
 class SignUpInfo extends StatelessWidget {
@@ -12,10 +13,10 @@ class SignUpInfo extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "Don't have an account? ",
+            AppStrings.textDontHaveAccount,
             style: TextStyle(color: Color(0xff999999)),
           ),
-          Text(" SIGN UP",
+          Text(AppStrings.actionSignIn,
               style: TextStyle(
                   color: Theme.of(context).primaryColor,
                   fontWeight: FontWeight.w700))

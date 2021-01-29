@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:userapp/core/app_strings.dart';
 import 'package:userapp/core/responsive.dart';
 
 class DescriptionSplash extends StatelessWidget {
@@ -9,7 +10,7 @@ class DescriptionSplash extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: responsive.heightR(5)),
       padding: EdgeInsets.symmetric(horizontal: responsive.widthR(10)),
       child: Text(
-        "Ea Lorem est ex sint veniam officia aliquip dolore sit eiusmod dolor. Ea Lorem est ex sint veniam officia.",
+        AppStrings.descriptionSplash,
         textAlign: TextAlign.center,
         style: TextStyle(
             fontSize: responsive.heightR(2.3),

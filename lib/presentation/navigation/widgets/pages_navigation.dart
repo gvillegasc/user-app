@@ -4,12 +4,12 @@ import 'package:userapp/presentation/navigation/chat/chat_page.dart';
 import 'package:userapp/presentation/navigation/favorite/favorite_page.dart';
 import 'package:userapp/presentation/navigation/home/home_page.dart';
 import 'package:userapp/presentation/navigation/user/user_page.dart';
-import '../navigation_provider.dart';
+import '../navigation_bloc.dart';
 
 class PagesNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final navigationProvider = Provider.of<NavigationProvider>(context);
+    final navigationProvider = Provider.of<NavigationBLoC>(context);
     return PageView(
       controller: navigationProvider.pageController,
       physics: NeverScrollableScrollPhysics(),

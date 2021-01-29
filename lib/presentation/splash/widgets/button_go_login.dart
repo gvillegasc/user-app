@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:location_permissions/location_permissions.dart';
 import 'package:provider/provider.dart';
+import 'package:userapp/core/app_strings.dart';
 import 'package:userapp/core/responsive.dart';
+import 'package:userapp/presentation/routes/routes.dart';
 import 'package:userapp/presentation/splash/splash_bloc.dart';
-import 'package:userapp/routes/routes.dart';
 
 class ButtonGoLogin extends StatelessWidget {
   @override
@@ -15,12 +15,11 @@ class ButtonGoLogin extends StatelessWidget {
         child: RaisedButton(
       child: Container(
         padding: EdgeInsets.symmetric(
-            horizontal: responsive.widthR(20),
-            vertical: responsive.heightR(.2)),
+            horizontal: responsive.widthR(20), vertical: responsive.heightR(2)),
         child: Text(
-          'IR A LOGIN',
+          AppStrings.actionGoToLogin,
           style: TextStyle(
-              fontSize: responsive.heightR(.2), fontWeight: FontWeight.w600),
+              fontSize: responsive.heightR(2.5), fontWeight: FontWeight.w600),
         ),
       ),
       shape: RoundedRectangleBorder(

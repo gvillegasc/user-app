@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:userapp/injection_container.dart';
-import 'package:userapp/presentation/navigation/home/user_bloc.dart';
-import 'widgets/list_users.dart';
-import 'widgets/loading_users.dart';
+import 'package:userapp/presentation/navigation/home/home_bloc.dart';
+import 'package:userapp/presentation/navigation/home/widgets/user_list.dart';
+import 'package:userapp/presentation/widgets/loading_users.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
     return ChangeNotifierProvider(
-      create: (_) => sl<UserBLoC>(),
+      create: (_) => sl<HomeBLoC>(),
       child: Scaffold(
         body: SingleChildScrollView(
             child: Container(
@@ -25,10 +25,9 @@ class HomePage extends StatelessWidget {
 class LoadBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final UserBLoC userBLoC = Provider.of<UserBLoC>(context);
-    print(userBLoC.isLoading);
+    final HomeBLoC userBLoC = Provider.of<HomeBLoC>(context);
     return (userBLoC.isLoading)
-        ? LoadingUsers()
-        : ListUsers(users: userBLoC.users);
+        ? SingleLoading()
+        : UserList(users: userBLoC.users);
   }
 }

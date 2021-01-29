@@ -1,25 +1,25 @@
 import 'dart:convert';
 
-UserModel userModelFromJson(String str) => UserModel.fromJson(json.decode(str));
+User userFromJson(String str) => User.fromJson(json.decode(str));
 
-String userModelToJson(UserModel data) => json.encode(data.toJson());
+String userToJson(User data) => json.encode(data.toJson());
 
 class UsersModel {
-  List<UserModel> items = new List();
+  List<User> items = new List();
 
   UsersModel();
 
   UsersModel.fromJsonList(List<dynamic> jsonList) {
     if (jsonList == null) return;
     for (var item in jsonList) {
-      final user = new UserModel.fromJson(item);
+      final user = new User.fromJson(item);
       items.add(user);
     }
   }
 }
 
-class UserModel {
-  UserModel({
+class User {
+  User({
     this.id,
     this.email,
     this.firstName,
@@ -33,7 +33,7 @@ class UserModel {
   String lastName;
   String avatar;
 
-  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+  factory User.fromJson(Map<String, dynamic> json) => User(
         id: json["id"],
         email: json["email"],
         firstName: json["first_name"],

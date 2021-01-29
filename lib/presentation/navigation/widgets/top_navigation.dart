@@ -2,13 +2,14 @@ import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import '../navigation_provider.dart';
+import 'package:userapp/core/app_strings.dart';
+import '../navigation_bloc.dart';
 
 class TopNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
-    final navigationProvider = Provider.of<NavigationProvider>(context);
+    final navigationProvider = Provider.of<NavigationBLoC>(context);
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -38,22 +39,22 @@ class TopNavigation extends StatelessWidget {
           _itemNavigation(
             context,
             FontAwesomeIcons.home,
-            "Home",
+            AppStrings.titleHome,
           ),
           _itemNavigation(
             context,
             FontAwesomeIcons.comment,
-            "Chats",
+            AppStrings.titleChats,
           ),
           _itemNavigation(
             context,
             FontAwesomeIcons.heart,
-            "Favorites",
+            AppStrings.titleFavorites,
           ),
           _itemNavigation(
             context,
             FontAwesomeIcons.user,
-            "User",
+            AppStrings.titleUser,
           ),
         ],
       ),

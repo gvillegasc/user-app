@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class NavigationProvider with ChangeNotifier {
+class NavigationBLoC with ChangeNotifier {
   PageController _pageController = PageController(initialPage: 0);
   int _actualPage = 0;
 

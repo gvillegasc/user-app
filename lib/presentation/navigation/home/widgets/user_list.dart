@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:userapp/domain/model/user_model.dart';
+import 'package:userapp/domain/model/user.dart';
 import 'package:userapp/presentation/navigation/home/widgets/user_item.dart';
 
-class ListUsers extends StatelessWidget {
-  final List<UserModel> users;
+class UserList extends StatelessWidget {
+  final List<User> users;
 
-  const ListUsers({Key key, @required this.users}) : super(key: key);
+  const UserList({Key key, @required this.users}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
