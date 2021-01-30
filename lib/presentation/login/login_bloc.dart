@@ -4,8 +4,6 @@ import 'package:userapp/domain/repository/api_repository.dart';
 import 'package:userapp/domain/repository/local_repository.dart';
 import 'package:userapp/domain/request/login_request.dart';
 import 'package:userapp/domain/response/login_response.dart';
-import 'package:userapp/presentation/routes/routes.dart';
-import 'package:userapp/presentation/widgets/single_alert.dart';
 
 class LoginBLoC with ChangeNotifier {
   final LocalRepositoryInterface localRepositoryInterface;
@@ -16,9 +14,9 @@ class LoginBLoC with ChangeNotifier {
     this.apiRepositoryInterface,
   });
 
-  String _usernameController = "";
+  String _usernameController = "michael.lawson@reqres.in";
   String _usernameError;
-  String _passwordController = "";
+  String _passwordController = "cerulean";
   String _passwordError;
   bool _isOk = false;
 
@@ -53,17 +51,14 @@ class LoginBLoC with ChangeNotifier {
     notifyListeners();
   }
 
-  void loginUser(BuildContext context) async {
+  Future<bool> loginUser() async {
     final LoginResponse loginResponse = await apiRepositoryInterface.loginUser(
         LoginRequest(this._usernameController, this._passwordController));
     if (loginResponse != null) {
-      Navigator.pop(context);
       await localRepositoryInterface.saveToken(loginResponse.token);
-      Navigator.pushNamed(context, AppRoutes.navigation);
+      return true;
     } else {
-      final Size screenSize = MediaQuery.of(context).size;
-      Navigator.pop(context);
-      singleAlert(context, screenSize, 'Aviso', "Credenciales incorrectas.");
+      return false;
     }
   }
 }

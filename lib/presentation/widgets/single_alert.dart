@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:userapp/core/responsive.dart';
 
 singleAlert(
-    BuildContext context, Size screenSize, String title, String message) {
+    BuildContext context, Responsive responsive, String title, String message) {
   showDialog(
       context: context,
       builder: (context) {
@@ -11,7 +12,7 @@ singleAlert(
             style: TextStyle(fontWeight: FontWeight.w700),
           ),
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(screenSize.height * 0.005)),
+              borderRadius: BorderRadius.circular(responsive.heightR(5))),
           content: Text(message),
           actions: <Widget>[
             FlatButton(

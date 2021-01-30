@@ -1,53 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:userapp/core/app_colors.dart';
 import 'package:userapp/core/app_strings.dart';
+import 'package:userapp/core/responsive.dart';
 import 'package:userapp/presentation/login/login_bloc.dart';
+import 'package:userapp/presentation/routes/routes.dart';
 import 'package:userapp/presentation/widgets/loading_alert.dart';
+import 'package:userapp/presentation/widgets/single_alert.dart';
 
 class SignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final Size screenSize = MediaQuery.of(context).size;
     final LoginBLoC loginBLoC = Provider.of<LoginBLoC>(context);
-
+    final Responsive responsive = Responsive.of(context);
     return Container(
-        margin: EdgeInsets.symmetric(vertical: screenSize.height * 0.04),
+        margin: EdgeInsets.symmetric(vertical: responsive.heightR(4)),
         child: RaisedButton(
           child: Container(
             padding: EdgeInsets.symmetric(
-                horizontal: screenSize.width * 0.2,
-                vertical: screenSize.height * 0.02),
+                horizontal: responsive.widthR(20),
+                vertical: responsive.heightR(2)),
             child: Text(
               AppStrings.actionSignIn,
               style: TextStyle(
                   wordSpacing: 1,
                   letterSpacing: 1,
-                  fontSize: screenSize.height * 0.024,
+                  fontSize: responsive.heightR(2.5),
                   fontWeight: FontWeight.w700),
             ),
           ),
           elevation: 0,
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(screenSize.height)),
+              borderRadius: BorderRadius.circular(responsive.height)),
           color: Theme.of(context).primaryColor,
-          textColor: Colors.white,
+          textColor: AppColors.white50,
           onPressed: (loginBLoC.isOk) ? () => login(loginBLoC, context) : null,
         ));
   }
 
   void login(LoginBLoC loginBLoC, BuildContext context) async {
     loadingAlert(context);
+    final Responsive responsive = Responsive.of(context);
     final LoginBLoC loginBLoC = Provider.of<LoginBLoC>(context, listen: false);
 
-    // ignore: close_sinks
-    loginBLoC.loginUser(context);
+    final bool isLogged = await loginBLoC.loginUser();
+    Navigator.pop(context);
 
-    // if (data['token'] != null) {
-    //   Navigator.pop(context);
-    //   Navigator.pushNamed(context, 'navigation');
-    // } else {
-    //   Navigator.pop(context);
-    //   singleAlert(context, screenSize, 'Aviso', "Credenciales incorrectas.");
-    // }
+    if (isLogged) {
+      Navigator.pushNamed(context, AppRoutes.navigation);
+    } else {
+      singleAlert(context, responsive, 'Aviso', "Credenciales incorrectas.");
+    }
   }
 }

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:userapp/domain/model/user.dart';
 import 'package:userapp/domain/repository/api_repository.dart';
 
-class HomeBLoC extends ChangeNotifier {
+class UserBLoC extends ChangeNotifier {
   final ApiRepositoryInterface apiRepositoryInterface;
 
-  HomeBLoC({
+  UserBLoC({
     this.apiRepositoryInterface,
   }) {
     loadUsers();
@@ -19,7 +19,7 @@ class HomeBLoC extends ChangeNotifier {
   List<User> get users => this._users;
   int get page => this._page;
 
-  loadUsers() async {
+  Future<void> loadUsers() async {
     this._isLoading = true;
     final List<User> usersResponse =
         await apiRepositoryInterface.getUsers(page);

@@ -6,11 +6,12 @@ class AppStrings {
   static final String descriptionSplash =
       "Ea Lorem est ex sint veniam officia aliquip dolore sit eiusmod dolor. Ea Lorem est ex sint veniam officia.";
 
+  static final String textDontHaveAccount = "Don't have an account? ";
+  static final String textContacts = "CONTACTOS";
+
   static final String titleSplash = "USERAPP";
-  static final String titleHome = "Home";
+  static final String titleContact = "Contacts";
   static final String titleChats = "Chats";
   static final String titleFavorites = "Favorites";
   static final String titleUser = "User";
-
-  static final String textDontHaveAccount = "Don't have an account? ";
 }

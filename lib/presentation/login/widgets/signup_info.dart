@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:userapp/core/app_colors.dart';
 import 'package:userapp/core/app_strings.dart';
 import 'package:userapp/core/responsive.dart';
 
@@ -14,7 +15,7 @@ class SignUpInfo extends StatelessWidget {
         children: [
           Text(
             AppStrings.textDontHaveAccount,
-            style: TextStyle(color: Color(0xff999999)),
+            style: TextStyle(color: AppColors.grey30),
           ),
           Text(AppStrings.actionSignIn,
               style: TextStyle(
