@@ -9,41 +9,42 @@ class LoginBLoC with ChangeNotifier {
   final LocalRepositoryInterface localRepositoryInterface;
   final ApiRepositoryInterface apiRepositoryInterface;
 
+  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  String _usernameError;
+  String _passwordError;
+  bool _isOk = false;
+
   LoginBLoC({
     this.localRepositoryInterface,
     this.apiRepositoryInterface,
-  });
+  }) {
+    this._usernameController.text = "michael.lawson@reqres.in";
+    this._passwordController.text = "cerulean";
+    this._isOk = true;
+  }
 
-  String _usernameController = "michael.lawson@reqres.in";
-  String _usernameError;
-  String _passwordController = "cerulean";
-  String _passwordError;
-  bool _isOk = false;
+  TextEditingController get usernameController => this._usernameController;
+  TextEditingController get passwordController => this._passwordController;
 
   String get usernameError => this._usernameError;
   String get passwordError => this._passwordError;
   bool get isOk => this._isOk;
 
-  String get usernameController => this._usernameController;
-  set usernameController(String value) {
-    this._usernameController = value;
-    this._usernameError = validateEmail(value);
+  void onChangeUsername() {
+    this._usernameError = validateEmail(this._usernameController.text);
     validateData();
-    notifyListeners();
   }
 
-  String get passwordController => this._passwordController;
-  set passwordController(String value) {
-    this._passwordController = value;
-    this._passwordError = validatePassword(value);
+  void onChangePassword() {
+    this._passwordError = validatePassword(this._passwordController.text);
     validateData();
-    notifyListeners();
   }
 
   void validateData() {
     if (this._passwordError == this._usernameError &&
-        this._usernameController.length > 0 &&
-        this._passwordController.length > 0) {
+        this._usernameController.text.length > 0 &&
+        this._passwordController.text.length > 0) {
       this._isOk = true;
     } else {
       this._isOk = false;
@@ -53,7 +54,8 @@ class LoginBLoC with ChangeNotifier {
 
   Future<bool> loginUser() async {
     final LoginResponse loginResponse = await apiRepositoryInterface.loginUser(
-        LoginRequest(this._usernameController, this._passwordController));
+        LoginRequest(
+            this._usernameController.text, this._passwordController.text));
     if (loginResponse != null) {
       await localRepositoryInterface.saveToken(loginResponse.token);
       return true;

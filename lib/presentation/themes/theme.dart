@@ -6,8 +6,5 @@ final myTheme = ThemeData(
   primaryColor: AppColors.yellow50,
   accentColor: AppColors.white50,
   cursorColor: AppColors.yellow50,
-  pageTransitionsTheme: PageTransitionsTheme(builders: {
-    TargetPlatform.android: CupertinoPageTransitionsBuilder(),
-  }),
   textTheme: GoogleFonts.montserratTextTheme(),
 );

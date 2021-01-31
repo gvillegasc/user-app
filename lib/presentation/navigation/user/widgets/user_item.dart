@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:userapp/core/app_colors.dart';
 import 'package:userapp/core/responsive.dart';
 import 'package:userapp/domain/model/user.dart';
+import 'package:userapp/presentation/routes/routes.dart';
 
 class UserItem extends StatelessWidget {
   final User user;
@@ -19,33 +20,34 @@ class UserItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final Responsive responsive = Responsive.of(context);
     return FadeIn(
-      child: Container(
-        margin: EdgeInsets.only(bottom: 20),
-        height: responsive.heightR(10),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(responsive.heightR(2)),
-          color: AppColors.white30,
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-                color: Colors.grey.withOpacity(0.2),
-                blurRadius: 10.0,
-                offset: Offset(0.0, 0.1))
-          ],
-        ),
-        width: double.infinity,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            _UserAvatar(avatar: this.user.avatar),
-            _UserInfo(
-              email: this.user.email,
-              firstName: this.user.lastName,
-              lastName: this.user.lastName,
-            ),
-            _Select(
-              onPressed: () {},
-            )
-          ],
+      child: GestureDetector(
+        onTap: () => Navigator.pushNamed(context, AppRoutes.userDetail),
+        child: Container(
+          margin: EdgeInsets.only(bottom: 20),
+          height: responsive.heightR(10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(responsive.heightR(2)),
+            color: AppColors.white30,
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                  color: Colors.grey.withOpacity(0.2),
+                  blurRadius: 10.0,
+                  offset: Offset(0.0, 0.1))
+            ],
+          ),
+          width: double.infinity,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _UserAvatar(avatar: this.user.avatar),
+              _UserInfo(
+                email: this.user.email,
+                firstName: this.user.lastName,
+                lastName: this.user.lastName,
+              ),
+              _Select()
+            ],
+          ),
         ),
       ),
     );
@@ -121,12 +123,6 @@ class _UserInfo extends StatelessWidget {
 }
 
 class _Select extends StatelessWidget {
-  final VoidCallback onPressed;
-
-  const _Select({Key key, @required this.onPressed})
-      : assert(onPressed != null),
-        super(key: key);
-
   @override
   Widget build(BuildContext context) {
     final Responsive responsive = Responsive.of(context);
@@ -136,11 +132,10 @@ class _Select extends StatelessWidget {
       height: double.infinity,
       child: Transform.rotate(
         angle: 180 * pi / 180,
-        child: IconButton(
+        child: Icon(
+          CupertinoIcons.back,
           color: AppColors.yellow50,
-          icon: Icon(CupertinoIcons.back),
-          iconSize: responsive.heightR(5),
-          onPressed: this.onPressed,
+          size: responsive.heightR(4),
         ),
       ),
     );
