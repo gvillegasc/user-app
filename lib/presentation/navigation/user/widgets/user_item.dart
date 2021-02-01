@@ -4,9 +4,12 @@ import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:userapp/core/app_colors.dart';
 import 'package:userapp/core/responsive.dart';
 import 'package:userapp/domain/model/user.dart';
+import 'package:userapp/presentation/navigation/user/user_bloc.dart';
+import 'package:userapp/presentation/navigation/user/user_detail/user_detail_page.dart';
 import 'package:userapp/presentation/routes/routes.dart';
 
 class UserItem extends StatelessWidget {
@@ -19,9 +22,19 @@ class UserItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Responsive responsive = Responsive.of(context);
+    final UserBLoC userBLoC = Provider.of<UserBLoC>(context);
     return FadeIn(
       child: GestureDetector(
-        onTap: () => Navigator.pushNamed(context, AppRoutes.userDetail),
+        onTap: () {
+          userBLoC.selectUser(this.user.id);
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => UserDetailPage(),
+              ));
+
+          // Navigator.pushNamed(context, AppRoutes.userDetail);
+        },
         child: Container(
           margin: EdgeInsets.only(bottom: 20),
           height: responsive.heightR(10),

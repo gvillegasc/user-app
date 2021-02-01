@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:userapp/core/enviroment.dart';
 import 'package:userapp/domain/model/user.dart';
+import 'package:userapp/domain/model/user_detail.dart';
 import 'package:userapp/domain/repository/api_repository.dart';
 import 'package:userapp/domain/request/login_request.dart';
 import 'package:userapp/domain/response/login_response.dart';
@@ -21,16 +22,12 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
 
   @override
   Future<List<User>> getUsers(int page) async {
-    // final Map<String, String> env = await Enviroment.instance.loadEnvFile();
-
-    // final url = "${env["API_URL"].toString()}/users?page=$page";
-    // final resp = await http.get(url);
     final resp = await apiRequest("/users?page=$page");
 
     try {
       if (resp.statusCode == 200) {
         final Map<String, dynamic> decodedData = json.decode(resp.body);
-        final dynamic dataUsers = UsersModel.fromJsonList(decodedData['data']);
+        final dynamic dataUsers = Users.fromJsonList(decodedData['data']);
         final List<User> users = dataUsers.items;
         return users;
       } else {
@@ -43,15 +40,10 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
 
   @override
   Future<LoginResponse> loginUser(LoginRequest loginRequest) async {
-    // final Map<String, String> env = await Enviroment.instance.loadEnvFile();
-
     final body = {
       'email': loginRequest.username,
       'password': loginRequest.password
     };
-    // final url = "${env["API_URL"].toString()}/login";
-    // final resp = await http.post(url,
-    //     headers: {"Content-Type": "application/json"}, body: json.encode(body));
 
     final resp = await apiRequest("/login", type: RequestType.post, body: body);
 
@@ -59,6 +51,23 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
       if (resp.statusCode == 200) {
         final decodedData = json.decode(resp.body);
         return LoginResponse(decodedData["token"]);
+      } else {
+        return null;
+      }
+    } catch (e) {
+      return null;
+    }
+  }
+
+  @override
+  Future<UserDetail> getUserSelected(int userId) async {
+    final resp = await apiRequest("/users/$userId");
+
+    try {
+      if (resp.statusCode == 200) {
+        final Map<String, dynamic> decodedData = json.decode(resp.body);
+        final dynamic user = UserDetail.fromJson(decodedData);
+        return user;
       } else {
         return null;
       }
