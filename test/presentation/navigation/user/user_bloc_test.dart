@@ -18,7 +18,7 @@ void main() {
 
       await userBLoC.loadUsers();
 
-      expect(userBLoC.isLoading, isFalse);
+      expect(userBLoC.userState, UserState.completed);
       expect(userBLoC.users, isA<List<User>>());
       expect(userBLoC.users, usersReponse);
       expect(userBLoC.users, isNotNull);

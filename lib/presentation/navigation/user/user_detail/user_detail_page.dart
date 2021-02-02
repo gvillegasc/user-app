@@ -5,16 +5,10 @@ import 'package:userapp/presentation/navigation/user/user_bloc.dart';
 class UserDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: BodyCreated());
-  }
-}
-
-class BodyCreated extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
     final UserBLoC userBLoC = Provider.of<UserBLoC>(context);
 
-    return Container(
+    return Scaffold(
+        body: Container(
       child: (userBLoC.isLoadingUserSelected)
           ? Center(
               child: CircularProgressIndicator(
@@ -23,8 +17,10 @@ class BodyCreated extends StatelessWidget {
               ),
             )
           : Center(
-              child: Text('Hola desde user detail page'),
+              child: Column(
+                children: <Widget>[Container()],
+              ),
             ),
-    );
+    ));
   }
 }

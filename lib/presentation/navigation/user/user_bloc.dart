@@ -3,6 +3,8 @@ import 'package:userapp/domain/model/user.dart';
 import 'package:userapp/domain/model/user_detail.dart';
 import 'package:userapp/domain/repository/api_repository.dart';
 
+enum UserState { loading, completed }
+
 class UserBLoC extends ChangeNotifier {
   final ApiRepositoryInterface apiRepositoryInterface;
 
@@ -12,15 +14,15 @@ class UserBLoC extends ChangeNotifier {
     loadUsers();
   }
 
-  bool _isLoading;
+  UserState _userState = UserState.loading;
   List<User> _users;
   UserDetail _userDetail;
   bool _isLoadingUserSelected = true;
   int _page = 1;
 
-  bool get isLoading => this._isLoading;
-  set isLoading(bool value) {
-    this._isLoading = value;
+  UserState get userState => this._userState;
+  set userState(UserState value) {
+    this._userState = value;
     notifyListeners();
   }
 
@@ -49,11 +51,11 @@ class UserBLoC extends ChangeNotifier {
   }
 
   Future<void> loadUsers() async {
-    this._isLoading = true;
+    this._userState = UserState.loading;
     final List<User> usersResponse =
         await apiRepositoryInterface.getUsers(page);
     this._users = usersResponse;
-    this._isLoading = false;
+    this._userState = UserState.completed;
     notifyListeners();
   }
 

@@ -28,7 +28,7 @@ class ButtonGoLogin extends StatelessWidget {
       textColor: Colors.white,
       onPressed: (splashBLoC.permissionStatus == PermissionStatus.granted)
           ? () => Navigator.pushNamed(context, AppRoutes.login)
-          : () {},
+          : null,
     ));
   }
 }

@@ -21,7 +21,8 @@ Future<void> init() async {
     () => LocalRepositoryImpl(),
   );
 
-  final sharedPreferences = await SharedPreferences.getInstance();
+  final SharedPreferences sharedPreferences =
+      await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPreferences);
   sl.registerLazySingleton(() => http.Client());
 

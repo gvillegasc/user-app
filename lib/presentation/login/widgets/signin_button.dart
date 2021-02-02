@@ -34,7 +34,9 @@ class SignInButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(responsive.height)),
           color: Theme.of(context).primaryColor,
           textColor: AppColors.white50,
-          onPressed: (loginBLoC.isOk) ? () => login(loginBLoC, context) : null,
+          onPressed: (loginBLoC.loginState == LoginState.valid)
+              ? () => login(loginBLoC, context)
+              : null,
         ));
   }
 

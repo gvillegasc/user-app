@@ -5,6 +5,8 @@ import 'package:userapp/domain/repository/local_repository.dart';
 import 'package:userapp/domain/request/login_request.dart';
 import 'package:userapp/domain/response/login_response.dart';
 
+enum LoginState { valid, invalid }
+
 class LoginBLoC with ChangeNotifier {
   final LocalRepositoryInterface localRepositoryInterface;
   final ApiRepositoryInterface apiRepositoryInterface;
@@ -13,7 +15,7 @@ class LoginBLoC with ChangeNotifier {
   TextEditingController _passwordController = TextEditingController();
   String _usernameError;
   String _passwordError;
-  bool _isOk = false;
+  LoginState _loginState;
 
   LoginBLoC({
     this.localRepositoryInterface,
@@ -21,15 +23,38 @@ class LoginBLoC with ChangeNotifier {
   }) {
     this._usernameController.text = "michael.lawson@reqres.in";
     this._passwordController.text = "cerulean";
-    this._isOk = true;
+    this._loginState = LoginState.valid;
   }
 
   TextEditingController get usernameController => this._usernameController;
+  set usernameController(TextEditingController value) {
+    this._usernameController = value;
+    notifyListeners();
+  }
+
   TextEditingController get passwordController => this._passwordController;
+  set passwordController(TextEditingController value) {
+    this._passwordController = value;
+    notifyListeners();
+  }
 
   String get usernameError => this._usernameError;
+  set usernameError(String value) {
+    this._usernameError = value;
+    notifyListeners();
+  }
+
   String get passwordError => this._passwordError;
-  bool get isOk => this._isOk;
+  set passwordError(String value) {
+    this._passwordError = value;
+    notifyListeners();
+  }
+
+  LoginState get loginState => this._loginState;
+  set loginState(LoginState value) {
+    this._loginState = value;
+    notifyListeners();
+  }
 
   void onChangeUsername() {
     this._usernameError = validateEmail(this._usernameController.text);
@@ -45,9 +70,9 @@ class LoginBLoC with ChangeNotifier {
     if (this._passwordError == this._usernameError &&
         this._usernameController.text.length > 0 &&
         this._passwordController.text.length > 0) {
-      this._isOk = true;
+      this._loginState = LoginState.valid;
     } else {
-      this._isOk = false;
+      this._loginState = LoginState.invalid;
     }
     notifyListeners();
   }

@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SingleLoading extends StatelessWidget {
@@ -8,10 +11,12 @@ class SingleLoading extends StatelessWidget {
       height: screenSize.height,
       width: screenSize.width,
       child: Center(
-        child: CircularProgressIndicator(
-          valueColor:
-              AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
-        ),
+        child: (Platform.isIOS)
+            ? CupertinoActivityIndicator()
+            : CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(
+                    Theme.of(context).primaryColor),
+              ),
       ),
     );
   }

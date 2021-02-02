@@ -22,7 +22,7 @@ class LoadBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final UserBLoC userBLoC = Provider.of<UserBLoC>(context);
-    return (userBLoC.isLoading)
+    return (userBLoC.userState == UserState.loading)
         ? SingleLoading()
         : UserList(users: userBLoC.users);
   }
