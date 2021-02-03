@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:location_permissions/location_permissions.dart';
 
 class SplashBLoC extends ChangeNotifier {
-  // PermissionStatus permissionStatus = PermissionStatus.unknown;
-  PermissionStatus permissionStatus = PermissionStatus.granted;
+  PermissionStatus permissionStatus = PermissionStatus.unknown;
   final LocationPermissionLevel locationPermission =
       LocationPermissionLevel.location;
 
   SplashBLoC() {
-    // requestPermissions();
+    requestPermissions();
   }
 
   void requestPermissions() async {

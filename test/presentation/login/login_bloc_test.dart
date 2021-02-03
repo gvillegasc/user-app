@@ -24,5 +24,29 @@ void main() {
       expect(isLogged, isNotNull);
       expect(isLogged, isA<bool>());
     });
+
+    test('validate that LoginState is valid', () async {
+      loginBLoC.passwordError = null;
+      loginBLoC.usernameError = null;
+      loginBLoC.usernameController.text = "test@testland.com";
+      loginBLoC.passwordController.text = "123456";
+
+      loginBLoC.validateData();
+
+      expect(loginBLoC.loginState, isNotNull);
+      expect(loginBLoC.loginState, equals(LoginState.valid));
+    });
+
+    test('validate that LoginState is invalid', () async {
+      loginBLoC.passwordError = "Password inválida";
+      loginBLoC.usernameError = "Email inválido";
+      loginBLoC.usernameController.text = "test@testland.com";
+      loginBLoC.passwordController.text = "123456";
+
+      loginBLoC.validateData();
+
+      expect(loginBLoC.loginState, isNotNull);
+      expect(loginBLoC.loginState, equals(LoginState.invalid));
+    });
   });
 }

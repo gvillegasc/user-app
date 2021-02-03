@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'UserApp',
-        theme: myTheme,
+        theme: appTheme,
         routes: appRoutes,
         initialRoute: appInitialRoute,
       ),
