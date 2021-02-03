@@ -19,7 +19,7 @@ class Description extends StatelessWidget {
       children: <Widget>[
         Text(
           AppStrings.titleDescription,
-          style: appStyles.progressTitle(color: AppColors.grey40),
+          style: appStyles.progressTitle(),
         ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: responsive.widthR(10)),
@@ -27,7 +27,7 @@ class Description extends StatelessWidget {
               textAlign: TextAlign.center, style: appStyles.progressBody()),
         ),
         SizedBox(
-          height: 5,
+          height: responsive.heightR(2),
         ),
         Text(userDetail.support.url,
             textAlign: TextAlign.center,

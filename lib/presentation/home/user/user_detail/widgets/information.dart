@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:userapp/core/app_strings.dart';
 import 'package:userapp/core/app_styles.dart';
+import 'package:userapp/core/responsive.dart';
 import 'package:userapp/domain/model/user_detail.dart';
 
 class Information extends StatelessWidget {
@@ -11,9 +12,12 @@ class Information extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AppStyles appStyles = AppStyles.of(context);
-
+    final Responsive responsive = Responsive.of(context);
     return Column(
       children: <Widget>[
+        SizedBox(
+          height: responsive.heightR(4),
+        ),
         Text(
           AppStrings.titleInformation,
           style: appStyles.progressTitle(),
@@ -22,7 +26,7 @@ class Information extends StatelessWidget {
             style: appStyles.progressBody()),
         Text(userDetail.data.email, style: appStyles.progressBody()),
         SizedBox(
-          height: 15,
+          height: responsive.heightR(4),
         )
       ],
     );
