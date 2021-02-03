@@ -6,10 +6,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:userapp/core/app_colors.dart';
+import 'package:userapp/core/app_styles.dart';
 import 'package:userapp/core/responsive.dart';
 import 'package:userapp/domain/model/user.dart';
-import 'package:userapp/presentation/navigation/user/user_bloc.dart';
-import 'package:userapp/presentation/navigation/user/user_detail/user_detail_page.dart';
+import 'package:userapp/presentation/home/user/user_bloc.dart';
 import 'package:userapp/presentation/routes/routes.dart';
 
 class UserItem extends StatelessWidget {
@@ -27,13 +27,7 @@ class UserItem extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           userBLoC.selectUser(this.user.id);
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => UserDetailPage(),
-              ));
-
-          // Navigator.pushNamed(context, AppRoutes.userDetail);
+          Navigator.pushNamed(context, AppRoutes.userDetail);
         },
         child: Container(
           margin: EdgeInsets.only(bottom: 20),
@@ -104,13 +98,14 @@ class _UserInfo extends StatelessWidget {
     @required this.lastName,
   })  : assert(
           email != null,
-          firstName != null,
+          lastName != null,
         ),
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final Responsive responsive = Responsive.of(context);
+    final AppStyles appStyles = AppStyles.of(context);
     return Container(
       height: responsive.heightR(10),
       width: responsive.widthR(50),
@@ -121,14 +116,9 @@ class _UserInfo extends StatelessWidget {
         children: [
           Text(
             "${this.firstName} ${this.lastName}",
-            style: TextStyle(
-                fontWeight: FontWeight.w700, fontSize: responsive.heightR(2)),
+            style: appStyles.progressBody(fontWeight: FontWeight.w700),
           ),
-          Text(
-            this.email,
-            style: TextStyle(
-                fontWeight: FontWeight.w400, fontSize: responsive.heightR(1.8)),
-          ),
+          Text(this.email, style: appStyles.progressSmallText()),
         ],
       ),
     );

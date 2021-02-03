@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:userapp/core/enviroment.dart';
+import 'package:userapp/data/mapper/user_mapper.dart';
 import 'package:userapp/domain/model/user.dart';
 import 'package:userapp/domain/model/user_detail.dart';
 import 'package:userapp/domain/repository/api_repository.dart';
@@ -31,7 +32,7 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
     try {
       if (resp.statusCode == 200) {
         final Map<String, dynamic> decodedData = json.decode(resp.body);
-        final dynamic dataUsers = Users.fromJsonList(decodedData['data']);
+        final dynamic dataUsers = UserMapper.fromJsonList(decodedData['data']);
         final List<User> users = dataUsers.items;
         return users;
       } else {

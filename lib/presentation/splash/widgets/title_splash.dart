@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:userapp/core/app_colors.dart';
 import 'package:userapp/core/app_strings.dart';
-import 'package:userapp/core/responsive.dart';
+import 'package:userapp/core/app_styles.dart';
 
 class TitleSplash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final Responsive responsive = Responsive.of(context);
+    final AppStyles appStyles = AppStyles.of(context);
     return Container(
       child: Text(
         AppStrings.titleSplash,
-        style: TextStyle(
-            fontSize: responsive.heightR(5),
-            fontWeight: FontWeight.w700,
-            color: Colors.white),
+        style: appStyles.progressBigTitle(color: AppColors.white50),
       ),
     );
   }

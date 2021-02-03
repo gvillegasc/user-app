@@ -4,6 +4,7 @@ import 'package:userapp/domain/model/user_detail.dart';
 import 'package:userapp/domain/repository/api_repository.dart';
 
 enum UserState { loading, completed }
+enum UserSelectedState { loading, completed }
 
 class UserBLoC extends ChangeNotifier {
   final ApiRepositoryInterface apiRepositoryInterface;
@@ -17,7 +18,7 @@ class UserBLoC extends ChangeNotifier {
   UserState _userState = UserState.loading;
   List<User> _users;
   UserDetail _userDetail;
-  bool _isLoadingUserSelected = true;
+  UserSelectedState _userSelectedState = UserSelectedState.loading;
   int _page = 1;
 
   UserState get userState => this._userState;
@@ -32,9 +33,9 @@ class UserBLoC extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool get isLoadingUserSelected => this._isLoadingUserSelected;
-  set isLoadingUserSelected(bool value) {
-    this._isLoadingUserSelected = value;
+  UserSelectedState get userSelectedState => this._userSelectedState;
+  set userSelectedState(UserSelectedState value) {
+    this._userSelectedState = value;
     notifyListeners();
   }
 
@@ -60,13 +61,11 @@ class UserBLoC extends ChangeNotifier {
   }
 
   Future<void> selectUser(int userId) async {
-    this._isLoadingUserSelected = true;
-    notifyListeners();
-
+    this._userSelectedState = UserSelectedState.loading;
     final UserDetail userDetail =
         await apiRepositoryInterface.getUserSelected(userId);
     this._userDetail = userDetail;
-    this._isLoadingUserSelected = false;
+    this._userSelectedState = UserSelectedState.completed;
     notifyListeners();
   }
 }

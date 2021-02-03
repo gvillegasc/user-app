@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:userapp/presentation/home/home_page.dart';
+import 'package:userapp/presentation/home/user/user_detail/user_detail_page.dart';
 import 'package:userapp/presentation/login/login_page.dart';
-import 'package:userapp/presentation/navigation/navigation_page.dart';
-import 'package:userapp/presentation/navigation/user/user_detail/user_detail_page.dart';
 import 'package:userapp/presentation/splash/splash_page.dart';
 
 class AppRoutes {
@@ -14,7 +14,7 @@ class AppRoutes {
 final Map<String, Widget Function(BuildContext)> appRoutes = {
   AppRoutes.splash: (_) => SplashPage(),
   AppRoutes.login: (_) => LoginPage(),
-  AppRoutes.navigation: (_) => NavigationPage(),
+  AppRoutes.navigation: (_) => HomePage(),
   AppRoutes.userDetail: (_) => UserDetailPage()
 };
 

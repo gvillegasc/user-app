@@ -4,19 +4,6 @@ User userFromJson(String str) => User.fromJson(json.decode(str));
 
 String userToJson(User data) => json.encode(data.toJson());
 
-class Users {
-  List<User> items = new List();
-
-  Users();
-
-  Users.fromJsonList(List<dynamic> jsonList) {
-    if (jsonList == null) return;
-    for (var item in jsonList) {
-      final user = new User.fromJson(item);
-      items.add(user);
-    }
-  }
-}
 
 class User {
   User({

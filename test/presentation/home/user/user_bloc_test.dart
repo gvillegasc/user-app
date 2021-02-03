@@ -1,7 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:userapp/domain/model/user.dart';
-import 'package:userapp/presentation/navigation/user/user_bloc.dart';
+import 'package:userapp/domain/model/user_detail.dart';
+import 'package:userapp/presentation/home/user/user_bloc.dart';
 
 import '../../../mock/api_repository_mock.dart';
 
@@ -22,6 +23,19 @@ void main() {
       expect(userBLoC.users, isA<List<User>>());
       expect(userBLoC.users, usersReponse);
       expect(userBLoC.users, isNotNull);
+    });
+
+    test('validate select user', () async {
+      final UserDetail userDetailResponse = UserDetail();
+      when(apiMock.getUserSelected(21))
+          .thenAnswer((_) => Future.value(userDetailResponse));
+
+      await userBLoC.selectUser(21);
+
+      expect(userBLoC.userSelectedState, UserSelectedState.completed);
+      expect(userBLoC.userDetail, isA<UserDetail>());
+      expect(userBLoC.userDetail, userDetailResponse);
+      expect(userBLoC.userDetail, isNotNull);
     });
   });
 }

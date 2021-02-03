@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:userapp/core/app_colors.dart';
 import 'package:userapp/core/responsive.dart';
 import 'package:userapp/injection_container.dart';
 import 'package:userapp/presentation/login/login_bloc.dart';
@@ -13,7 +14,7 @@ class LoginPage extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => sl<LoginBLoC>(),
       child: Scaffold(
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: AppColors.yellow50,
         body: SingleChildScrollView(
           child: Container(
             height: responsive.height,

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:userapp/presentation/home/user/user_bloc.dart';
 import 'package:userapp/presentation/routes/routes.dart';
 import 'package:userapp/presentation/themes/theme.dart';
 import 'injection_container.dart' as di;
 import 'injection_container.dart';
-import 'presentation/navigation/user/user_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

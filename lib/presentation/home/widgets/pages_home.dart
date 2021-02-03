@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:userapp/presentation/navigation/chat/chat_page.dart';
-import 'package:userapp/presentation/navigation/favorite/favorite_page.dart';
-import 'package:userapp/presentation/navigation/info/user_page.dart';
-import 'package:userapp/presentation/navigation/user/user_page.dart';
-import '../navigation_bloc.dart';
+import 'package:userapp/presentation/home/chat/chat_page.dart';
+import 'package:userapp/presentation/home/favorite/favorite_page.dart';
+import 'package:userapp/presentation/home/info/user_page.dart';
+import 'package:userapp/presentation/home/user/user_page.dart';
+import '../home_bloc.dart';
 
-class PagesNavigation extends StatelessWidget {
+class PagesHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final navigationProvider = Provider.of<NavigationBLoC>(context);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:userapp/core/app_colors.dart';
 import 'package:userapp/core/responsive.dart';
 
 class InputTextFormField extends StatelessWidget {
@@ -37,7 +38,7 @@ class InputTextFormField extends StatelessWidget {
             hintStyle: TextStyle(fontWeight: FontWeight.w500),
             icon: Icon(
               this.iconData,
-              color: Theme.of(context).primaryColor,
+              color: AppColors.yellow50,
             )),
         obscureText: this.obscureText,
         keyboardType: this.textInputType,

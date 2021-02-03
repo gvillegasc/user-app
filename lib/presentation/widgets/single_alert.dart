@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:userapp/core/app_colors.dart';
+import 'package:userapp/core/app_strings.dart';
 import 'package:userapp/core/responsive.dart';
 
 singleAlert(
@@ -17,10 +19,9 @@ singleAlert(
           actions: <Widget>[
             FlatButton(
               child: Text(
-                'Aceptar',
+                AppStrings.actionAgree,
                 style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                    fontWeight: FontWeight.w600),
+                    color: AppColors.yellow50, fontWeight: FontWeight.w600),
               ),
               onPressed: () => Navigator.of(context).pop(),
             )

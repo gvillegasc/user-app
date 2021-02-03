@@ -2,8 +2,9 @@ import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:userapp/core/app_colors.dart';
 import 'package:userapp/core/app_strings.dart';
-import '../navigation_bloc.dart';
+import '../home_bloc.dart';
 
 class TopNavigation extends StatelessWidget {
   @override
@@ -27,9 +28,7 @@ class TopNavigation extends StatelessWidget {
         opacity: 1,
         backgroundColor: Colors.white,
         currentIndex: navigationProvider.actualPage,
-        onTap: (i) {
-          navigationProvider.actualPage = i;
-        },
+        onTap: (i) => navigationProvider.actualPage = i,
         borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16)),
         elevation: 0,
@@ -64,7 +63,7 @@ class TopNavigation extends StatelessWidget {
   BubbleBottomBarItem _itemNavigation(
       BuildContext context, IconData icon, String name) {
     return BubbleBottomBarItem(
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: AppColors.yellow50,
         icon: Icon(
           icon,
           color: Colors.black,
