@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:userapp/presentation/home/chat/chat_page.dart';
 import 'package:userapp/presentation/home/favorite/favorite_page.dart';
+import 'package:userapp/presentation/home/home_bloc.dart';
 import 'package:userapp/presentation/home/info/user_page.dart';
 import 'package:userapp/presentation/home/user/user_page.dart';
-import '../home_bloc.dart';
 
 class PagesHome extends StatelessWidget {
   @override

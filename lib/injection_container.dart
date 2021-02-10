@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:userapp/core/util/form_validator.dart';
 import 'package:userapp/data/datasource/api_repository_impl.dart';
 import 'package:userapp/data/datasource/local_repository_impl.dart';
 import 'package:userapp/domain/repository/local_repository.dart';
@@ -26,14 +27,16 @@ Future<void> init() async {
   sl.registerLazySingleton(() => sharedPreferences);
   sl.registerLazySingleton(() => http.Client());
 
+  sl.registerLazySingleton(() => FormValidator());
+
   sl.registerFactory(
     () => SplashBLoC(),
   );
   sl.registerFactory(
     () => LoginBLoC(
-      apiRepositoryInterface: sl(),
-      localRepositoryInterface: sl(),
-    ),
+        apiRepositoryInterface: sl(),
+        localRepositoryInterface: sl(),
+        formValidator: sl()),
   );
   sl.registerFactory(
     () => UserBLoC(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:userapp/core/utils/validators.dart';
+import 'package:userapp/core/util/form_validator.dart';
 import 'package:userapp/domain/repository/api_repository.dart';
 import 'package:userapp/domain/repository/local_repository.dart';
 import 'package:userapp/domain/request/login_request.dart';
@@ -10,6 +10,7 @@ enum LoginState { valid, invalid }
 class LoginBLoC with ChangeNotifier {
   final LocalRepositoryInterface localRepositoryInterface;
   final ApiRepositoryInterface apiRepositoryInterface;
+  final FormValidator formValidator;
 
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
@@ -17,10 +18,10 @@ class LoginBLoC with ChangeNotifier {
   String _passwordError;
   LoginState _loginState;
 
-  LoginBLoC({
-    this.localRepositoryInterface,
-    this.apiRepositoryInterface,
-  }) {
+  LoginBLoC(
+      {this.localRepositoryInterface,
+      this.apiRepositoryInterface,
+      this.formValidator}) {
     this._usernameController.text = "michael.lawson@reqres.in";
     this._passwordController.text = "cerulean";
     this._loginState = LoginState.valid;
@@ -57,12 +58,14 @@ class LoginBLoC with ChangeNotifier {
   }
 
   void onChangeUsername() {
-    this._usernameError = validateEmail(this._usernameController.text);
+    this._usernameError =
+        formValidator.validateEmail(this._usernameController.text);
     validateData();
   }
 
   void onChangePassword() {
-    this._passwordError = validatePassword(this._passwordController.text);
+    this._passwordError =
+        formValidator.validatePassword(this._passwordController.text);
     validateData();
   }
 

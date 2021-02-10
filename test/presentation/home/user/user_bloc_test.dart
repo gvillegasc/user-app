@@ -13,7 +13,7 @@ void main() {
   );
 
   group("UserBLoC test", () {
-    test('validate load users', () async {
+    test('should validate if load users', () async {
       final List<User> usersReponse = [];
       when(apiMock.getUsers(1)).thenAnswer((_) => Future.value(usersReponse));
 
@@ -25,7 +25,7 @@ void main() {
       expect(userBLoC.users, isNotNull);
     });
 
-    test('validate select user', () async {
+    test('should validate is user is selected', () async {
       final UserDetail userDetailResponse = UserDetail();
       when(apiMock.getUserSelected(21))
           .thenAnswer((_) => Future.value(userDetailResponse));

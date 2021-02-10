@@ -24,6 +24,7 @@ class Photo extends StatelessWidget {
               height: responsive.heightR(15),
               width: responsive.heightR(15),
               child: CachedNetworkImage(
+                fit: BoxFit.cover,
                 imageUrl: userDetail.data.avatar,
               ),
             ),

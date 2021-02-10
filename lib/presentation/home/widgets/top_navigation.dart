@@ -4,16 +4,17 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:userapp/core/app_colors.dart';
 import 'package:userapp/core/app_strings.dart';
-import '../home_bloc.dart';
+import 'package:userapp/presentation/home/home_bloc.dart';
 
 class TopNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final Size screenSize = MediaQuery.of(context).size;
-    final navigationProvider = Provider.of<NavigationBLoC>(context);
+    final NavigationBLoC navigationBLoC = Provider.of<NavigationBLoC>(context);
+    final double statusBarHeight = MediaQuery.of(context).padding.top;
+
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.white50,
         borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16)),
         boxShadow: <BoxShadow>[
@@ -23,12 +24,12 @@ class TopNavigation extends StatelessWidget {
               offset: Offset(0.0, 0.1))
         ],
       ),
-      padding: EdgeInsets.only(top: screenSize.height * 0.035),
+      padding: EdgeInsets.only(top: statusBarHeight),
       child: BubbleBottomBar(
         opacity: 1,
-        backgroundColor: Colors.white,
-        currentIndex: navigationProvider.actualPage,
-        onTap: (i) => navigationProvider.actualPage = i,
+        backgroundColor: AppColors.white50,
+        currentIndex: navigationBLoC.actualPage,
+        onTap: (i) => navigationBLoC.actualPage = i,
         borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16)),
         elevation: 0,

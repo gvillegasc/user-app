@@ -7,7 +7,8 @@ class SplashBLoC extends ChangeNotifier {
       LocationPermissionLevel.location;
 
   SplashBLoC() {
-    requestPermissions();
+    // requestPermissions();
+    this.permissionStatus = PermissionStatus.granted;
   }
 
   void requestPermissions() async {
