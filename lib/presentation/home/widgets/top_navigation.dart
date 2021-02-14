@@ -29,30 +29,26 @@ class TopNavigation extends StatelessWidget {
         opacity: 1,
         backgroundColor: AppColors.white50,
         currentIndex: navigationBLoC.actualPage,
-        onTap: (i) => navigationBLoC.actualPage = i,
+        onTap: (i) => navigationBLoC.changePage(i),
         borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16)),
         elevation: 0,
         hasNotch: false,
         hasInk: true,
         items: <BubbleBottomBarItem>[
-          _itemNavigation(
-            context,
+          navigationItem(
             FontAwesomeIcons.list,
             AppStrings.titleContact,
           ),
-          _itemNavigation(
-            context,
+          navigationItem(
             FontAwesomeIcons.comment,
             AppStrings.titleChats,
           ),
-          _itemNavigation(
-            context,
+          navigationItem(
             FontAwesomeIcons.heart,
             AppStrings.titleFavorites,
           ),
-          _itemNavigation(
-            context,
+          navigationItem(
             FontAwesomeIcons.user,
             AppStrings.titleUser,
           ),
@@ -61,8 +57,7 @@ class TopNavigation extends StatelessWidget {
     );
   }
 
-  BubbleBottomBarItem _itemNavigation(
-      BuildContext context, IconData icon, String name) {
+  BubbleBottomBarItem navigationItem(IconData icon, String name) {
     return BubbleBottomBarItem(
         backgroundColor: AppColors.yellow50,
         icon: Icon(

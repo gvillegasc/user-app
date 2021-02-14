@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 
 class NavigationBLoC with ChangeNotifier {
-  PageController _pageController = PageController(initialPage: 0);
-  int _actualPage = 0;
+  PageController pageController = PageController(initialPage: 0);
+  int actualPage = 0;
 
-  get pageController => this._pageController;
-
-  get actualPage => this._actualPage;
-  set actualPage(int value) {
-    this._actualPage = value;
-    this._pageController.animateToPage(value,
+  void changePage(int page) {
+    this.actualPage = page;
+    this.pageController.animateToPage(page,
         duration: Duration(milliseconds: 250), curve: Curves.easeOut);
     notifyListeners();
   }

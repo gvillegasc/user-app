@@ -11,12 +11,23 @@ class UserPage extends StatelessWidget {
     final Responsive responsive = Responsive.of(context);
     final UserBLoC userBLoC = Provider.of<UserBLoC>(context);
     return Scaffold(
-      body: SingleChildScrollView(
-          child: Container(
-              padding: EdgeInsets.symmetric(horizontal: responsive.widthR(7.5)),
-              child: (userBLoC.userState == UserState.loading)
-                  ? Container(height: responsive.height, child: SingleLoading())
-                  : UserList(users: userBLoC.users))),
-    );
+        body: SingleChildScrollView(
+            child: Container(
+                padding:
+                    EdgeInsets.symmetric(horizontal: responsive.widthR(7.5)),
+                child: validateState(userBLoC, responsive))));
+  }
+
+  Widget validateState(UserBLoC userBLoC, Responsive responsive) {
+    switch (userBLoC.userState) {
+      case UserState.loading:
+        return Container(height: responsive.height, child: SingleLoading());
+        break;
+      case UserState.completed:
+        return UserList(users: userBLoC.users);
+        break;
+      default:
+        return Container();
+    }
   }
 }

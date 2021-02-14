@@ -5,7 +5,7 @@ class Enviroment {
   static Enviroment _instance = Enviroment._internal();
   static Enviroment get instance => _instance;
 
-  static String pathEnv = "assets/env/.env_dev";
+  static String pathEnv = "assets/env/.env.dev";
 
   Future<Map<String, String>> loadEnvFile() async {
     DotEnv instance = DotEnv();

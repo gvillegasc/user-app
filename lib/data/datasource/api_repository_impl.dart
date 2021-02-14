@@ -51,7 +51,7 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
       'email': loginRequest.username,
       'password': loginRequest.password
     };
-    final resp = await http.post("${env["API_URL"].toString()}/login",
+    final resp = await http.post("${env["API_URL"]}/login",
         headers: {"Content-Type": "application/json"}, body: json.encode(body));
 
     try {
@@ -95,7 +95,7 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
       "Authorization": "Bearer $token"
     };
 
-    final url = "${env["API_URL"].toString()}$endpoint";
+    final url = "${env["API_URL"]}$endpoint";
     dynamic resp;
 
     if (type == RequestType.post) {

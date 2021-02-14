@@ -8,11 +8,19 @@ class UserDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final UserBLoC userBLoC = Provider.of<UserBLoC>(context);
+    return Scaffold(body: Container(child: validateState(userBLoC)));
+  }
 
-    return Scaffold(
-        body: Container(
-            child: (userBLoC.userSelectedState == UserSelectedState.loading)
-                ? SingleLoading()
-                : Detail(userDetail: userBLoC.userDetail)));
+  Widget validateState(UserBLoC userBLoC) {
+    switch (userBLoC.userSelectedState) {
+      case UserSelectedState.loading:
+        return SingleLoading();
+        break;
+      case UserSelectedState.completed:
+        return Detail(userDetail: userBLoC.userDetail);
+        break;
+      default:
+        return Container();
+    }
   }
 }
